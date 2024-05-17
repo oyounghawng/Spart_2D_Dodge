@@ -14,6 +14,11 @@ public class BackGround : MonoBehaviour
     private void Awake()
     {
         viewHeight = Camera.main.orthographicSize * 2;
+        int cnt = gameObject.GetComponentsInChildren<Transform>().Length;
+        for (int i = 0; i < cnt-1; i ++)
+        {
+            sprites[i] = gameObject.GetComponentsInChildren<Transform>()[i+1];
+        }
     }
 
     // Update is called once per frame
