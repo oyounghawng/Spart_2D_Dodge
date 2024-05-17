@@ -9,11 +9,10 @@ public class PlayerInputController : DodgeController
     {
         base.Awake();
     }
-    
+
     public void OnMove(InputValue value)
     {
         Vector2 moveInput = value.Get<Vector2>().normalized;
         CallMoveEvent(moveInput);
     }
-
 }

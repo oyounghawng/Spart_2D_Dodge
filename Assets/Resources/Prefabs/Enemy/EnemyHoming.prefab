@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   moveDirection: {x: 0, y: 0, z: 0}
-  player: {fileID: 1652794437913369172}
+  player: {fileID: 0}
 --- !u!1 &1838108334624307996
 GameObject:
   m_ObjectHideFlags: 0

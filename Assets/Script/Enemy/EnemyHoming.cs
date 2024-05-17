@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class EnemyHoming : MonoBehaviour
 {
-    [SerializeField]
     private float moveSpeed = 0.0f;
-    [SerializeField]
     private Vector3 moveDirection = Vector3.zero;
-    [SerializeField]
-    public GameObject player;  // 플레이어 오브젝트 참조
+    private GameObject player;  // 플레이어 오브젝트 참조
 
     private void Start()
     {
-        if (player == null)
-        {
-            player = GameObject.FindWithTag("Player");  // 플레이어를 태그로 찾기
-        }
+        moveSpeed = 2.0f;
     }
 
     private void Update()
@@ -29,6 +23,10 @@ public class EnemyHoming : MonoBehaviour
 
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
+    }
+    public void SetInfo(GameObject go)
+    {
+        player = go;
     }
 
     public void moveTo(Vector3 direction)

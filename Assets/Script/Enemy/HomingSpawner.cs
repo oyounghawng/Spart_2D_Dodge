@@ -13,6 +13,9 @@ public class HomingSpawner : MonoBehaviour
 
     private void Awake()
     {
+        enemyPrefab = Managers.Resource.Load<GameObject>("Prefabs/Enemy/EnemyHoming");
+        player = Managers.Object.Player;
+        spawnTime = 1f;
         StartCoroutine(SpawnEnemy());
     }
 
@@ -21,14 +24,10 @@ public class HomingSpawner : MonoBehaviour
         while (true)
         {
             float positionX = Random.Range(-2.4f, 2.4f);
-            GameObject enemy = Instantiate(enemyPrefab, new Vector3(positionX, 7.4f, 0.0f), Quaternion.identity);
-            EnemyHoming movement = enemy.GetComponent<EnemyHoming>();
-
-            if (movement != null)
-            {
-                movement.player = player;  // 플레이어 설정
-            }
-
+            GameObject enemy = Managers.Instantiate(enemyPrefab, this.transform);
+            enemy.transform.position = new Vector3(positionX, 7.4f, 0.0f);
+            EnemyHoming enemyHoming =Util.GetOrAddComponent<EnemyHoming>(enemy);
+            enemyHoming.SetInfo(player);
             yield return new WaitForSeconds(spawnTime);
         }
     }
