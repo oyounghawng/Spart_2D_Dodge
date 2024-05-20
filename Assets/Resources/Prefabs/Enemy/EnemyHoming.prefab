@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1777012943414326800}
   - component: {fileID: 919592837627294950}
+  - component: {fileID: 7053169883972104794}
   m_Layer: 0
   m_Name: EnemyHoming
   m_TagString: Untagged
@@ -45,9 +46,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea20bdcaa683c7647b7f9b0da20baedc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  moveDirection: {x: 0, y: 0, z: 0}
-  player: {fileID: 0}
+  speed: 0.2
+  health: 5
+  sprites: []
+--- !u!50 &7053169883972104794
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652794437913369172}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1838108334624307996
 GameObject:
   m_ObjectHideFlags: 0

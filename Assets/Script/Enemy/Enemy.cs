@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.tag == "PlayerBullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            OnHit(Bullet.dmg);
+            OnHit(bullet.dmg);
         }
 
         
