@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBoss : MonoBehaviour
 {
+    public float moveSpeed = 1.5f;
+    public Vector3 moveDirection = Vector3.down;
     public float speed;
     public int health;
     public Sprite[] sprites;
@@ -11,18 +13,12 @@ public class EnemyBoss : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
 
-    [SerializeField]
-    private float moveSpeed = 1.5f;
-    [SerializeField]
-    private Vector3 moveDirection = Vector3.down;
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = Vector2.down * speed;
     }
-
-
     private void Update()
     {
         if (transform.position.y > 7.4f)
@@ -40,7 +36,7 @@ public class EnemyBoss : MonoBehaviour
         }
     }
 
-    public void OnHit(int dmg)
+    public void OnHit(int dmg = 10)
     {
         health -= dmg;
         spriteRenderer.sprite = sprites[1];
@@ -64,10 +60,7 @@ public class EnemyBoss : MonoBehaviour
         else if (collision.gameObject.tag == "PlayerBullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            OnHit(bullet.dmg);
+            OnHit();
         }
-
-
     }
-
 }
