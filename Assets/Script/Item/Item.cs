@@ -12,6 +12,4 @@ public class Item : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = Vector2.down * 3;
     }
-
- 
 }

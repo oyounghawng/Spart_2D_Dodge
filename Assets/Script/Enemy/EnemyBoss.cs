@@ -40,7 +40,7 @@ public class EnemyBoss : MonoBehaviour
         }
     }
 
-    public void OnHit(int dmg)
+    public void OnHit(int dmg = 10)
     {
         health -= dmg;
         spriteRenderer.sprite = sprites[1];
@@ -64,10 +64,7 @@ public class EnemyBoss : MonoBehaviour
         else if (collision.gameObject.tag == "PlayerBullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            OnHit(bullet.dmg);
+            OnHit();
         }
-
-
     }
-
 }

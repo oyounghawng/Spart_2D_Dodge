@@ -5,9 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed;
-    private AttackSO AttackSO;
+    public float dmg;
     private Vector2 direction;
-    private CharacterStat characterStat;
 
     private void Update()
     {
@@ -27,8 +26,8 @@ public class Bullet : MonoBehaviour
         this.direction = direction;
     }
 
-    public void SetSo(AttackSO attackSO)
+    public void SetSo(CharacterStatsHandler stathandler)
     {
-        AttackSO = attackSO;
+        dmg = stathandler.CurrentStat.attackSO.power;
     }
 }
