@@ -12,6 +12,14 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         this.transform.Translate(Vector3.up * this.speed * Time.deltaTime);
+        if(this.transform.position.y >20)
+        {
+            Managers.Resource.Destroy(this.gameObject);
+        }
+    }
+    private void OnEnable()
+    {
+        
     }
 
     public void SetDirection(Vector2 direction)
@@ -23,5 +31,4 @@ public class Bullet : MonoBehaviour
     {
         AttackSO = attackSO;
     }
-
 }

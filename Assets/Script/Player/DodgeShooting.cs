@@ -17,8 +17,6 @@ public class DodgeShooting : MonoBehaviour
         controller = GetComponent<DodgeController>();
         controller.onAttackEvent += OnAttack;
         projectileSpawnPosition = GetComponentsInChildren<Transform>()[2];
-        Bullet = Managers.Resource.Load<GameObject>("Prefabs/Bullet");
-        pool = GameObject.FindObjectOfType<ObjectPool>();
     }
 
     private void OnAttack(AttackSO attackSO)
@@ -36,9 +34,8 @@ public class DodgeShooting : MonoBehaviour
 
     private void CreateProjectile(RangedAttackSO rangedAttackSO)
     {
-        GameObject go = pool.SpawnFromPool(rangedAttackSO.bulletNameTag);
-        go.transform.SetParent(null, true);
-
+        GameObject go  = Managers.Resource.Instantiate("Bullet");
+        go.transform.position = projectileSpawnPosition.position;
         go.GetComponent<Bullet>().SetSo(rangedAttackSO);
     }
 }

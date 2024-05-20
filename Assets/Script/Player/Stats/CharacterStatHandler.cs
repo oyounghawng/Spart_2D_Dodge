@@ -71,6 +71,7 @@ public class CharacterStatsHandler : MonoBehaviour
         UpdateCharacterStat();
     }
 
+    [ContextMenu("Asd")]
     public void Test()
     {
         CharacterStat addStat = new CharacterStat();
