@@ -8,10 +8,17 @@ public class Bullet : MonoBehaviour
     public float speed;
     public float dmg;
     private Vector2 direction;
+    private Rigidbody2D rigid;
+
+    private void Awake()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
-        this.transform.Translate(Vector3.up * this.speed * Time.deltaTime);
+        rigid.velocity = Vector3.up * speed;
+        //this.transform.Translate(Vector3.up * this.speed * Time.deltaTime,Space.Self);
         if (this.transform.position.y > 20)
         {
             Managers.Resource.Destroy(this.gameObject);

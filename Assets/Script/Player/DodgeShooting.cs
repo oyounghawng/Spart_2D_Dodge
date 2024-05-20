@@ -36,6 +36,7 @@ public class DodgeShooting : MonoBehaviour
     {
         GameObject go  = Managers.Resource.Instantiate("Bullet");
         go.transform.position = projectileSpawnPosition.position;
+        go.transform.SetParent(projectileSpawnPosition);
         go.GetComponent<Bullet>().SetSo(Stats);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EnemyBoss : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class EnemyBoss : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
+
+        moveDirection = Vector3.zero;
         rigid.velocity = Vector2.down * speed;
     }
     private void Update()
@@ -27,10 +30,10 @@ public class EnemyBoss : MonoBehaviour
         }
         else
         {
-            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+            transform.position += moveDirection * moveSpeed * Time.deltaTime;
         }
 
-            if (transform.position.y < -6f)
+        if (transform.position.y < -6f)
         {
             Destroy(gameObject);
         }
