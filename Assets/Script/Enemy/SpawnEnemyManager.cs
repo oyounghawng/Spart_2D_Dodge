@@ -4,36 +4,22 @@ using UnityEngine;
 
 public class SpawnEnemyManager : MonoBehaviour
 {
-    public GameObject enemyMobPrefab;
-
-    public float mobSpawnTime;
-
-    public GameObject enemyHomingPrefab;
-
-    public float homingSpawnTime;
-
-    public GameObject enemyBossPrefab;
-
-    public bool spawnBoss = false;
-
-    public GameObject player;
-
-
+    private float mobSpawnTime;
+    private float homingSpawnTime;
+    private bool spawnBoss = false;
+    private GameObject player;
 
     private void Awake()
     {
-        enemyMobPrefab = Managers.Resource.Load<GameObject>("Prefabs/Enemy/EnemyMob");
         mobSpawnTime = 3f;
-        enemyHomingPrefab = Managers.Resource.Load<GameObject>("Prefabs/Enemy/EnemyHoming");
         homingSpawnTime = 8f;
-        enemyBossPrefab = Managers.Resource.Load<GameObject>("Prefabs/Enemy/EnemyBoss");
-
         player = Managers.Object.Player;
-
-        StartCoroutine(SpawnEnemies());
     }
 
-
+    private void Start()
+    {
+        StartCoroutine(SpawnEnemies());
+    }
     private IEnumerator SpawnEnemies()
     {
         StartCoroutine(SpawnMob());
@@ -60,9 +46,8 @@ public class SpawnEnemyManager : MonoBehaviour
         while (true)
         {
             float positionX = Random.Range(-2.4f, 2.4f);
-            GameObject enemy = Managers.Instantiate(enemyMobPrefab, this.transform);
+            GameObject enemy = Managers.Resource.Instantiate("Enemy/EnemyMob", this.transform);
             enemy.transform.position = new Vector3(positionX, 7.4f, 0.0f);
-
             yield return new WaitForSeconds(mobSpawnTime);
         }
     }
@@ -72,7 +57,7 @@ public class SpawnEnemyManager : MonoBehaviour
         while (true)
         {
             float positionX = Random.Range(-2.4f, 2.4f);
-            GameObject enemy = Managers.Instantiate(enemyHomingPrefab, this.transform);
+            GameObject enemy = Managers.Resource.Instantiate("Enemy/EnemyHoming", this.transform);
             enemy.transform.position = new Vector3(positionX, 7.4f, 0.0f);
             EnemyHoming enemyHoming = Util.GetOrAddComponent<EnemyHoming>(enemy);
             enemyHoming.SetInfo(player);
@@ -83,7 +68,8 @@ public class SpawnEnemyManager : MonoBehaviour
 
     private void SpawnBoss()
     {
-        Instantiate(enemyBossPrefab, new Vector3(0f, 8f, 0f), Quaternion.identity);
+        GameObject go = Managers.Resource.Instantiate("Enemy/EnemyBoss", this.transform);
+        go.transform.position = new Vector3(0f, 8f, 0f);
     }
 
     private IEnumerator BossCooldown()

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerBullet
+  - Bullet
+  - PlayerLimit
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Level
   - Player
   - Bullet
-  - 
+  - PlayerLimit
   - 
   - 
   - 

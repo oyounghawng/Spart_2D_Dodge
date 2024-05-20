@@ -11,7 +11,7 @@ public class EnemyHoming : Enemy
     {
         player = Managers.Object.Player;
     }
-    /*
+    
     private void Update()
     {
         if (player != null)
