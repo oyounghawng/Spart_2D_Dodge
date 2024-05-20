@@ -4,21 +4,35 @@ using UnityEngine;
 
 public class EnemyBoss : MonoBehaviour
 {
-    public float moveSpeed = 1.5f;
+    public float moveSpeed = 0.0f;
     public Vector3 moveDirection = Vector3.down;
     public float speed;
     public int health;
     public Sprite[] sprites;
 
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rigid;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigid;
 
-    public void Awake()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
-        rigid.velocity = Vector2.down * speed;
     }
+
+    private void Start()
+    {
+        rigid.velocity = moveDirection * speed;
+        Invoke("Stop", 2.0f);
+    }
+
+    private void Stop()
+    {
+        if (!gameObject.activeSelf)
+            return;
+
+        rigid.velocity = Vector2.zero;
+    }
+
     private void Update()
     {
         if (transform.position.y > 7.4f)
@@ -29,8 +43,7 @@ public class EnemyBoss : MonoBehaviour
         {
             transform.position += Vector3.down * moveSpeed * Time.deltaTime;
         }
-
-            if (transform.position.y < -6f)
+        if (transform.position.y < -6f)
         {
             Destroy(gameObject);
         }
@@ -48,15 +61,17 @@ public class EnemyBoss : MonoBehaviour
         }
     }
 
-    public void ReturnSprite()
+    private void ReturnSprite()
     {
         spriteRenderer.sprite = sprites[0];
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "BorderBullet")
+        {
             Destroy(gameObject);
+        }
         else if (collision.gameObject.tag == "PlayerBullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
