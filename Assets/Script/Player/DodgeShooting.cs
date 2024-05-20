@@ -16,7 +16,7 @@ public class DodgeShooting : MonoBehaviour
         controller = GetComponent<DodgeController>();
         controller.onAttackEvent += OnAttack;
         projectileSpawnPosition = GetComponentsInChildren<Transform>()[2];
-        Bullet = Managers.Resource.Load<GameObject>("Prefabs/Bullet");
+        Stats = GetComponent<CharacterStatsHandler>();
     }
 
     private void OnAttack(AttackSO attackSO)
@@ -28,20 +28,14 @@ public class DodgeShooting : MonoBehaviour
 
         for (int i = 0; i < numberOfProjectilesPerShot; i++)
         {
-            CreateProjectile(rangedAttackSO);
+            CreateProjectile();
         }
     }
 
-    private void CreateProjectile(RangedAttackSO rangedAttackSO)
+    private void CreateProjectile()
     {
-        // GameObject obj = Instantiate(Bullet);
-        // obj.transform.position = projectileSpawnPosition.position;
-
-        // ProjectileController attakController = obj.GetComponent<ProjectileController>();
-        // attakController.InitializeAttack(rangedAttackSO);
-
-        GameObject go = Managers.Resource.Instantiate(Bullet, projectileSpawnPosition);
+        GameObject go  = Managers.Resource.Instantiate("Bullet");
         go.transform.position = projectileSpawnPosition.position;
-        go.GetComponent<Bullet>().SetSo(rangedAttackSO);
+        go.GetComponent<Bullet>().SetSo(Stats);
     }
 }
