@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1777012943414326800}
   - component: {fileID: 919592837627294950}
+  - component: {fileID: 1879421055645960648}
   m_Layer: 0
   m_Name: EnemyHoming
   m_TagString: Untagged
@@ -45,9 +46,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea20bdcaa683c7647b7f9b0da20baedc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  moveDirection: {x: 0, y: 0, z: 0}
+  moveSpeed: 0
   player: {fileID: 0}
+--- !u!114 &1879421055645960648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652794437913369172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3f36e8bfc61df41a99b4c5aa39eb23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 0
 --- !u!1 &1838108334624307996
 GameObject:
   m_ObjectHideFlags: 0

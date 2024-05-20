@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class EnemyBoss : MonoBehaviour
 {
-    [SerializeField]
-    private float moveSpeed = 1.5f;
-    [SerializeField]
-    private Vector3 moveDirection = Vector3.down;
+    public float moveSpeed = 1.5f;
+    public Vector3 moveDirection = Vector3.down;
 
 
     private void Update()
