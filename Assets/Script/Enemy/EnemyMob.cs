@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemyMob : MonoBehaviour
 {
-    public float moveSpeed = 0.0f;
-    public Vector3 moveDirection = Vector3.down;
+    [SerializeField]
+    private float moveSpeed = 0.0f;
+    [SerializeField]
+    private Vector3 moveDirection = Vector3.zero;
 
     private void Update()
     {
