@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea20bdcaa683c7647b7f9b0da20baedc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 4
   player: {fileID: 0}
 --- !u!114 &1879421055645960648
 MonoBehaviour:
