@@ -10,7 +10,6 @@ public class DodgeShooting : MonoBehaviour
     private Transform projectileSpawnPosition;
     private GameObject Bullet;
     protected CharacterStatsHandler Stats { get; private set; }
-    private ObjectPool pool;
 
     private void Awake() 
     {
