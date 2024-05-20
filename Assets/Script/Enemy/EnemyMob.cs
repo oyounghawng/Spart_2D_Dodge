@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class EnemyMob : Enemy
 {
-<<<<<<< HEAD
-    public float speed;
-    public int health;
-    public Sprite[] sprites;
-    [SerializeField]
-    private float moveSpeed = 0.0f;
-    [SerializeField]
-    private Vector3 moveDirection = Vector3.zero;
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rigid;
-    /*
-=======
     public float moveSpeed = 0.0f;
     public Vector3 moveDirection = Vector3.down;
 

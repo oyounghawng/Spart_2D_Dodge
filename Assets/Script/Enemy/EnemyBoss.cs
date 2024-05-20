@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBoss : MonoBehaviour
 {
+    public float moveSpeed = 1.5f;
+    public Vector3 moveDirection = Vector3.down;
 <<<<<<< HEAD
     public float speed;
     public int health;
