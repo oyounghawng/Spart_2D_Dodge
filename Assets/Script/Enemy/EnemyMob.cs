@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMob : Enemy
 {
+<<<<<<< HEAD
     public float speed;
     public int health;
     public Sprite[] sprites;
@@ -14,6 +15,11 @@ public class EnemyMob : Enemy
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
     /*
+=======
+    public float moveSpeed = 0.0f;
+    public Vector3 moveDirection = Vector3.down;
+
+>>>>>>> parent of ae0f449 (Revert "Merge branch 'JeongHun' into Oyoung")
     private void Update()
     {
         transform.position += moveDirection * moveSpeed * Time.deltaTime;

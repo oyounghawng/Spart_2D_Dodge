@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBoss : MonoBehaviour
 {
+<<<<<<< HEAD
     public float speed;
     public int health;
     public Sprite[] sprites;
@@ -21,6 +22,10 @@ public class EnemyBoss : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = Vector2.down * speed;
     }
+=======
+    public float moveSpeed = 1.5f;
+    public Vector3 moveDirection = Vector3.down;
+>>>>>>> parent of ae0f449 (Revert "Merge branch 'JeongHun' into Oyoung")
 
 
     private void Update()
