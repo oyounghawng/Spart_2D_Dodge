@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 3694718329891108788}
   - component: {fileID: 6192191801573292952}
   m_Layer: 6
-  m_Name: Square
+  m_Name: HomingSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

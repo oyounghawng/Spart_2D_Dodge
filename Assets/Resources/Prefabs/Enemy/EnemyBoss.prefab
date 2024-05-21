@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5443039884703875927}
   - component: {fileID: 4863570320532327981}
   m_Layer: 6
-  m_Name: Square
+  m_Name: BossSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4502963168810500890}
   - component: {fileID: 4389404112983200163}
-  - component: {fileID: 8581491882654607410}
   - component: {fileID: 4608706869992799808}
   - component: {fileID: 610121948998825187}
   m_Layer: 6
@@ -132,24 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844a153104c534845b0d673affcc9132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  moveDirection: {x: 0, y: 0, z: 0}
-  speed: 0
+  speed: 1
   health: 1000
   sprites: []
---- !u!114 &8581491882654607410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7614323840375343852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3f36e8bfc61df41a99b4c5aa39eb23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsUsing: 0
 --- !u!61 &4608706869992799808
 BoxCollider2D:
   m_ObjectHideFlags: 0

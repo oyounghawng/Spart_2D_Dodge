@@ -11,7 +11,7 @@ public class EnemyHoming : Enemy
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-    new private void Update()
+    private new void Update()
     {
         if (player != null)
         {
@@ -24,13 +24,13 @@ public class EnemyHoming : Enemy
             Managers.Resource.Destroy(gameObject);
         }
     }
-    new private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            Destroy(gameObject);
-        }
-    }
+    //private new void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Bullet"))
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
     public void SetInfo(GameObject go)
     {
         player = go;

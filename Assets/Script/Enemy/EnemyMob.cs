@@ -5,9 +5,10 @@ using UnityEngine;
 public class EnemyMob : Enemy
 {
     public float moveSpeed = 0.0f;
-    public Vector3 moveDirection = Vector3.down;
+    Vector3 moveDirection = Vector3.down;
+    Enemy SpriteRenderer;
 
-    new private void Update()
+    private new void Update()
     {
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
@@ -20,11 +21,11 @@ public class EnemyMob : Enemy
     {
         moveDirection = direction;
     }
-    new private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            Destroy(gameObject);
-        }
-    }
+    //private new void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Bullet"))
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

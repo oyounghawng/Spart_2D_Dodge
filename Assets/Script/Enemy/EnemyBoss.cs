@@ -4,49 +4,36 @@ using UnityEngine;
 
 public class EnemyBoss : MonoBehaviour
 {
-    public float moveSpeed = 0.0f;
-    public Vector3 moveDirection = Vector3.down;
-    public float speed;
+    public float speed ;
     public int health;
     public Sprite[] sprites;
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigid;
 
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
+        rigid.velocity = Vector2.down * speed;
     }
 
     private void Start()
     {
-        rigid.velocity = moveDirection * speed;
-        Invoke("Stop", 2.0f);
+        Invoke("Stop", 3f);
     }
 
     private void Stop()
     {
         if (!gameObject.activeSelf)
             return;
-
         rigid.velocity = Vector2.zero;
     }
 
     private void Update()
     {
-        if (transform.position.y > 7.4f)
-        {
-            transform.position = new Vector3(transform.position.x, 7.4f, transform.position.z);
-        }
-        else
-        {
-            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
-        }
-        if (transform.position.y < -6f)
-        {
-            Destroy(gameObject);
-        }
+
     }
 
     public void OnHit(int dmg = 10)
@@ -76,6 +63,7 @@ public class EnemyBoss : MonoBehaviour
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             OnHit();
+            Destroy(collision.gameObject);
         }
     }
 }

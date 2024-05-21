@@ -69,7 +69,7 @@ public class SpawnEnemyManager : MonoBehaviour
     private void SpawnBoss()
     {
         GameObject go = Managers.Resource.Instantiate("Enemy/EnemyBoss", this.transform);
-        go.transform.position = new Vector3(0f, 7f, 0f);
+        go.transform.position = new Vector3(0f, 6.2f, 0f);
     }
 
     private IEnumerator BossCooldown()

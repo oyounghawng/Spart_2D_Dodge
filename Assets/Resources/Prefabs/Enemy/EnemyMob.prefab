@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2761107927570095869}
   - component: {fileID: 6170391161567238488}
   m_Layer: 6
-  m_Name: Circle
+  m_Name: MobSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
