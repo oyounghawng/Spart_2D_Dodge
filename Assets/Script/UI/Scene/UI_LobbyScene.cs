@@ -54,7 +54,6 @@ public class UI_LobbyScene : UI_Scene
             SelectGameObject = evt.pointerClick;
             SelectGameObject.GetComponent<UI_CharacterSet>().ActivePanel();
         }
-
     }
     void GameStart(PointerEventData evt)
     {

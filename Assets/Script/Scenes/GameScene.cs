@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
-    public int Boomcnt;
     protected override void Init()
     {
         base.Init();
