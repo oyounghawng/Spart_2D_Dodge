@@ -5,14 +5,13 @@ using UnityEngine;
 public class EnemyHoming : Enemy
 {
     public float moveSpeed = 0.0f;
-    public GameObject player;
+    private GameObject player;
 
-    private void Awake()
+    private void Start()
     {
-        player = Managers.Object.Player;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
-    
-    private void Update()
+    private new void Update()
     {
         if (player != null)
         {
@@ -20,8 +19,18 @@ public class EnemyHoming : Enemy
 
             transform.position += direction * moveSpeed * Time.deltaTime;
         }
+        if (transform.position.y < -6f)
+        {
+            Managers.Resource.Destroy(gameObject);
+        }
     }
-
+    //private new void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Bullet"))
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
     public void SetInfo(GameObject go)
     {
         player = go;

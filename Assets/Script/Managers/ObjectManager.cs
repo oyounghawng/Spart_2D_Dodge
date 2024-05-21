@@ -32,6 +32,6 @@ public class ObjectManager
     {
         GameObject go = Managers.Resource.Load<GameObject>("Prefabs/Player");
         Player = go;
-        Managers.Instantiate(go);
+        Managers.Resource.Instantiate(go);
     }
 }

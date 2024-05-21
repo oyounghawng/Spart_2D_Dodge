@@ -11,11 +11,12 @@ public class GameScene : BaseScene
         StartCoroutine(CoWaitLoad());
     }
     IEnumerator CoWaitLoad()
-    {
+    {     
         while (Managers.Data.Loaded() == false)
             yield return null;
 
         Managers.Object.SpawnPlayer();
+        Managers.UI.ShowSceneUI<UI_GameScene>();
     }
     public override void Clear()
     {
