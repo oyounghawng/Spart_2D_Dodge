@@ -133,6 +133,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   health: 1000
+  sprites:
+  - {fileID: 2192450021786810173, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
+  - {fileID: -7945901444079236628, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
+  speed: 1
+  health: 1000
 --- !u!61 &4608706869992799808
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -162,7 +167,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

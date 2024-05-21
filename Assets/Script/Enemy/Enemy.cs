@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     public void OnHit(float dmg)
     {
         health -= dmg;
-        //spriteRenderer.sprite = sprites[0];
+        spriteRenderer.sprite = sprites[1];
         Invoke("ReturnSprite", 0.1f);
         if (health <= 0)
         {
@@ -44,12 +44,12 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "BorderBullet")
+        if (collision.gameObject.tag == "PlayerLimit")
             Destroy(gameObject);
         else if (collision.gameObject.tag == "Bullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            //OnHit(bullet.dmg);
+            OnHit(bullet.dmg);
         }
     }
 }

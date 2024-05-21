@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
     {
         characterStat = _characterStat;
     }
-
+    public int dmg;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerLimit"))
