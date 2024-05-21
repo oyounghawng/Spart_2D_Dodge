@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,6 +10,10 @@ public class Enemy : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
+
+    public GameObject Coin;
+    public GameObject Boom;
+    public GameObject Power;
 
     protected void Awake()
     {
@@ -32,9 +36,29 @@ public class Enemy : MonoBehaviour
         Invoke("ReturnSprite", 0.1f);
         if (health <= 0)
         {
-            Destroy(gameObject);
-            Managers.Resource.Instantiate("Item/Item Boom");// 아이템 랜덤으로 떨어지는거 만들기
+            return;
         }
+        int ran = Random.Range(0, 10);
+        if (ran < 3) 
+        {
+            Debug.Log("Not Item");
+            
+        }
+        else if(ran < 5)
+        {
+            Managers.Resource.Instantiate("Item/Item Coin");// 아이템 랜덤으로 떨어지는거 만들기
+        }
+        else if(ran < 8)
+        {
+            Managers.Resource.Instantiate("Item/Item Boom");
+        }
+        else if (ran < 10) 
+        {
+            Managers.Resource.Instantiate("Item/Item Power");
+        }
+        Destroy(gameObject);
+
+
     }
 
     public void ReturnSprite()

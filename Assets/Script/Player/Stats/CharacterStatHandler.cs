@@ -4,17 +4,22 @@ using UnityEngine;
 public class CharacterStatsHandler : MonoBehaviour
 {
     [SerializeField] private CharacterStat baseStat;
+    public CharacterStat BaseStat
+    {
+        get { return baseStat; }
+        private set { }
+    }
     public CharacterStat CurrentStat { get; private set; }
     public DodgeController controller;
     public List<CharacterStat> statModifiers = new List<CharacterStat>();
 
-    private void Awake() 
+    private void Awake()
     {
         controller = GetComponent<DodgeController>();
         UpdateCharacterStat();
     }
 
-    public void UpdateCharacterStat() 
+    public void UpdateCharacterStat()
     {
         BulletSO _bulletSO = baseStat.bulletSO;
         CurrentStat = new CharacterStat
@@ -25,10 +30,10 @@ public class CharacterStatsHandler : MonoBehaviour
             maxHealth = baseStat.maxHealth,
             movementSpeed = baseStat.movementSpeed
         };
-        
+
         //ApplyModifiers();
     }
-    
+
     private void ApplyModifiers()
     {
         foreach (var modifier in statModifiers)
@@ -52,7 +57,7 @@ public class CharacterStatsHandler : MonoBehaviour
             CurrentStat.movementSpeed += modifier.movementSpeed;
         }
     }
-    
+
     public void AddModifier(CharacterStat modifier)
     {
         statModifiers.Add(modifier);

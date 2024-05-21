@@ -1,22 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum Itemype
+public enum ItemType
 {
     Boom,
     Coin,
     Power
 }
-
 public class Item : MonoBehaviour
 {
-    public Itemype type;
+    public ItemType type;
     Rigidbody2D rigid;
 
     public void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        rigid.velocity = Vector2.down * 3;
+        rigid.velocity = Vector2.down * 0.5f;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameScene gameScene = Managers.Scene.CurrentScene as GameScene;
+            switch (type)
+            {
+                case ItemType.Coin:
+                    gameScene.Score = 100;
+                    break;
+                case ItemType.Boom:
+                    gameScene.BoomCnt = 1;
+                    break;
+                case ItemType.Power:
+                    CharacterStatsHandler statsHandler = collision.gameObject.GetComponent<CharacterStatsHandler>();
+                    statsHandler.BaseStat.LevelUp = 1;
+                    statsHandler.UpdateCharacterStat();
+                    break;
+            }
+            Managers.Resource.Destroy(this.gameObject);
+        }
     }
 }
