@@ -8,6 +8,7 @@ public class UI_GameScene : UI_Scene
 {
     enum GameObjects
     {
+        Boom,
     }
     enum Texts
     {
@@ -27,12 +28,18 @@ public class UI_GameScene : UI_Scene
         Bind<Image>(typeof(Images));
         Bind<Button>(typeof(Buttons));
 
-        GetButton((int)Buttons.PauseButton).gameObject.BindEvent(Puase);
+        GetButton((int)Buttons.PauseButton).gameObject.BindEvent(Pause);
+        GetObject((int)GameObjects.Boom).BindEvent(Boom);
     }
 
-    void Puase(PointerEventData evt)
+    void Pause(PointerEventData evt)
     {
         Time.timeScale = 0f;
         Managers.UI.ShowPopupUI<UI_Pause>();
+    }
+    void Boom(PointerEventData evt)
+    {
+        //Boom ·ÎÁ÷ÀÛ¼º!
+        Debug.Log("ºÕ!");
     }
 }

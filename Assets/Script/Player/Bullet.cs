@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     private CharacterStat characterStat;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigid;
-    int level = 0;
+    public int level = 0;
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
