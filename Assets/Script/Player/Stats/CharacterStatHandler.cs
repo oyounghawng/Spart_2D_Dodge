@@ -47,7 +47,6 @@ public class CharacterStatsHandler : MonoBehaviour
                 }
                 else
                 {
-                    CurrentStat.attackSO.size += modifier.attackSO.size;
                     CurrentStat.attackSO.delay += modifier.attackSO.delay;
                     CurrentStat.attackSO.power += modifier.attackSO.power;
                     CurrentStat.attackSO.speed += modifier.attackSO.speed;
@@ -74,8 +73,17 @@ public class CharacterStatsHandler : MonoBehaviour
     [ContextMenu("Asd")]
     public void Test()
     {
-        CharacterStat addStat = new CharacterStat();
-        addStat.movementSpeed = 5;
+        CharacterStat addStat = new CharacterStat{
+            movementSpeed = 5,
+            attackSO = ScriptableObject.CreateInstance<AttackSO>()
+        };
+        addStat.attackSO.power = 5;
+        
+        // addStat.attackSO = Instantiate(attackSO);
+        // addStat.attackSO.power = 5.0f;
+
         AddModifier(addStat);
+
+        Debug.Log($"Current Max Health: {CurrentStat.maxHealth}, Movement Speed: {CurrentStat.movementSpeed}, Attack Power: {CurrentStat.attackSO?.power}");
     }
 }

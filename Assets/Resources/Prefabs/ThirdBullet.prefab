@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -6469730293922802028}
   - component: {fileID: 9044179818836193772}
   m_Layer: 9
-  m_Name: Bullet
+  m_Name: ThirdBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,8 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletStat:
     statsChangeType: 0
-    BulletName: Bullet
-    bulletSO: {fileID: 11400000, guid: 1177141846cfcdd4885c253c78c820b8, type: 2}
+    BulletName: ThirdBullet
+    bulletSO: {fileID: 11400000, guid: b54ee1f5f03e09b479da216213a3a013, type: 2}
 --- !u!114 &9044179818836193772
 MonoBehaviour:
   m_ObjectHideFlags: 0
