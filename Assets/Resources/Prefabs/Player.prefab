@@ -278,10 +278,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStat:
+    Level: 2
     statsChangeType: 2
-    maxHealth: 0
-    movementSpeed: 5
-    attackSO: {fileID: 11400000, guid: 698a56bcadb199c4a879e8b5218e10c1, type: 2}
+    maxHealth: 1
+    movementSpeed: 4
+    bulletSO: {fileID: 11400000, guid: 1177141846cfcdd4885c253c78c820b8, type: 2}
   controller: {fileID: 0}
   statModifiers: []
 --- !u!61 &6553510950543978175

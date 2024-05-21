@@ -6,5 +6,5 @@ using UnityEngine;
 public class BulletSO : AttackSO
 {
     [Header("Bullet Info")]
-    public Sprite bulletSprite;
+    public Sprite[] bulletSprite;
 }

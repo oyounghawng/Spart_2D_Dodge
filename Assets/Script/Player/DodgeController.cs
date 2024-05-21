@@ -23,20 +23,21 @@ public class DodgeController : MonoBehaviour
     {
         HandleAttackDelay();
     }
-
+    
     private void HandleAttackDelay()
     {
-        if (lastAttackTime < Stats.CurrentStat.attackSO.delay)
+        int level = Stats.CurrentStat.Level;
+        if (lastAttackTime < Stats.CurrentStat.bulletSO.delay[level])
         {
             lastAttackTime += Time.deltaTime;
         }
-        else if(lastAttackTime >= Stats.CurrentStat.attackSO.delay)
+        else if(lastAttackTime >= Stats.CurrentStat.bulletSO.delay[level])
         {
             lastAttackTime = 0f;
-            CallAttackEvent(Stats.CurrentStat.attackSO);
+            CallAttackEvent(Stats.CurrentStat.bulletSO);
         }
     }
-
+    
     public void CallMoveEvent(Vector2 direction)
     {
         onMoveEvent?.Invoke(direction);
@@ -46,5 +47,4 @@ public class DodgeController : MonoBehaviour
     {
         onAttackEvent?.Invoke(attackSO);
     }
-
 }

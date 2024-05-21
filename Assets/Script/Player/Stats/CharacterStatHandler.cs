@@ -6,7 +6,6 @@ public class CharacterStatsHandler : MonoBehaviour
     [SerializeField] private CharacterStat baseStat;
     public CharacterStat CurrentStat { get; private set; }
     public DodgeController controller;
-
     public List<CharacterStat> statModifiers = new List<CharacterStat>();
 
     private void Awake() 
@@ -17,47 +16,43 @@ public class CharacterStatsHandler : MonoBehaviour
 
     public void UpdateCharacterStat() 
     {
-        AttackSO attackSO = null;
-
-        if (baseStat.attackSO != null)
+        BulletSO _bulletSO = baseStat.bulletSO;
+        CurrentStat = new CharacterStat
         {
-            attackSO = Instantiate(baseStat.attackSO);
-        }
-
-        CurrentStat = new CharacterStat 
-        {
-            attackSO = attackSO,
+            Level = baseStat.Level,
+            bulletSO = _bulletSO,
             statsChangeType = baseStat.statsChangeType,
             maxHealth = baseStat.maxHealth,
             movementSpeed = baseStat.movementSpeed
         };
-
-        ApplyModifiers();
+        
+        //ApplyModifiers();
     }
-
+    
     private void ApplyModifiers()
     {
         foreach (var modifier in statModifiers)
         {
-            if (modifier.attackSO != null)
-            {
-                if (CurrentStat.attackSO == null)
+            if (modifier.bulletSO != null)
+            {/*
+                if (CurrentStat.bulletSO == null)
                 {
-                    CurrentStat.attackSO = Instantiate(modifier.attackSO);
+                    CurrentStat.bulletSO = Instantiate(modifier.attackSO);
                 }
                 else
                 {
-                    CurrentStat.attackSO.delay += modifier.attackSO.delay;
-                    CurrentStat.attackSO.power += modifier.attackSO.power;
-                    CurrentStat.attackSO.speed += modifier.attackSO.speed;
+                    CurrentStat.bulletSO.delay += modifier.bulletSO.delay;
+                    CurrentStat.bulletSO.power += modifier.bulletSO.power;
+                    CurrentStat.bulletSO.speed += modifier.bulletSO.speed;
                 }
+                */
             }
 
             CurrentStat.maxHealth += modifier.maxHealth;
             CurrentStat.movementSpeed += modifier.movementSpeed;
         }
     }
-
+    
     public void AddModifier(CharacterStat modifier)
     {
         statModifiers.Add(modifier);
@@ -68,22 +63,5 @@ public class CharacterStatsHandler : MonoBehaviour
     {
         statModifiers.Remove(modifier);
         UpdateCharacterStat();
-    }
-
-    [ContextMenu("Asd")]
-    public void Test()
-    {
-        CharacterStat addStat = new CharacterStat{
-            movementSpeed = 5,
-            attackSO = ScriptableObject.CreateInstance<AttackSO>()
-        };
-        addStat.attackSO.power = 5;
-        
-        // addStat.attackSO = Instantiate(attackSO);
-        // addStat.attackSO.power = 5.0f;
-
-        AddModifier(addStat);
-
-        Debug.Log($"Current Max Health: {CurrentStat.maxHealth}, Movement Speed: {CurrentStat.movementSpeed}, Attack Power: {CurrentStat.attackSO?.power}");
     }
 }
