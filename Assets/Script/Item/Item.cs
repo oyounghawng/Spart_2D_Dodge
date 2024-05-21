@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Itemype
+{
+    Boom,
+    Coin,
+    Power
+}
+
 public class Item : MonoBehaviour
 {
-    public string type;
+    public Itemype type;
     Rigidbody2D rigid;
 
     public void Awake()

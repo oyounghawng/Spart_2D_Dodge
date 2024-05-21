@@ -16,6 +16,8 @@ public class LobbyScene : BaseScene
         while (Managers.Data.Loaded() == false)
             yield return null;
 
+        Managers.UI.ShowSceneUI<UI_LobbyScene>();
+
     }
     public override void Clear()
     {
