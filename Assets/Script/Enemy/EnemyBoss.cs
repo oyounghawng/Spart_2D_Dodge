@@ -1,42 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class EnemyBoss : MonoBehaviour
 {
-    public float moveSpeed = 1.5f;
-    public Vector3 moveDirection = Vector3.down;
-    public float speed;
+    public float speed ;
     public int health;
     public Sprite[] sprites;
 
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rigid;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigid;
 
-    public void Awake()
+
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
-
-        moveDirection = Vector3.zero;
         rigid.velocity = Vector2.down * speed;
     }
+
+    private void Start()
+    {
+        Invoke("Stop", 3f);
+    }
+
+    private void Stop()
+    {
+        if (!gameObject.activeSelf)
+            return;
+        rigid.velocity = Vector2.zero;
+    }
+
     private void Update()
     {
-        if (transform.position.y > 7.4f)
-        {
-            transform.position = new Vector3(transform.position.x, 7.4f, transform.position.z);
-        }
-        else
-        {
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
-        }
 
-        if (transform.position.y < -6f)
-        {
-            Destroy(gameObject);
-        }
     }
 
     public void OnHit(int dmg = 10)
@@ -51,19 +48,22 @@ public class EnemyBoss : MonoBehaviour
         }
     }
 
-    public void ReturnSprite()
+    private void ReturnSprite()
     {
         spriteRenderer.sprite = sprites[0];
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "BorderBullet")
+        {
             Destroy(gameObject);
+        }
         else if (collision.gameObject.tag == "PlayerBullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             OnHit();
+            Destroy(collision.gameObject);
         }
     }
 }

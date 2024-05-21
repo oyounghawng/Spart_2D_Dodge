@@ -51,8 +51,7 @@ MonoBehaviour:
   speed: 0
   health: 0
   sprites: []
-  moveSpeed: 0
-  player: {fileID: 0}
+  moveSpeed: 2
 --- !u!114 &1879421055645960648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +80,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -149,7 +148,7 @@ GameObject:
   - component: {fileID: 3694718329891108788}
   - component: {fileID: 6192191801573292952}
   m_Layer: 6
-  m_Name: Square
+  m_Name: HomingSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

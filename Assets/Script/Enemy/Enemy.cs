@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "BorderBullet")
             Destroy(gameObject);
-        else if (collision.gameObject.tag == "PlayerBullet")
+        else if (collision.gameObject.tag == "Bullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             //OnHit(bullet.dmg);
