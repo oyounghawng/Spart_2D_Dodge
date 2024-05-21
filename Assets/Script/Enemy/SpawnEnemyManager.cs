@@ -9,6 +9,8 @@ public class SpawnEnemyManager : MonoBehaviour
     private bool spawnBoss = false;
     private GameObject player;
 
+    [SerializeField] private Transform spawnPoint1;
+    [SerializeField] private Transform spawnPoint2;
     private void Awake()
     {
         mobSpawnTime = 2f;
