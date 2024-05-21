@@ -21,22 +21,21 @@ public class DodgeShooting : MonoBehaviour
 
     private void OnAttack(AttackSO attackSO)
     {
-        RangedAttackSO rangedAttackSO = attackSO as RangedAttackSO;
-        if(rangedAttackSO == null) return;
+        // RangedAttackSO rangedAttackSO = attackSO as RangedAttackSO;
+        if(attackSO == null) return;
 
-        int numberOfProjectilesPerShot = rangedAttackSO.numberOfProjectilesPerShot;
+        // int numberOfProjectilesPerShot = rangedAttackSO.numberOfProjectilesPerShot;
 
-        for (int i = 0; i < numberOfProjectilesPerShot; i++)
-        {
+        // for (int i = 0; i < numberOfProjectilesPerShot; i++)
+        // {
             CreateProjectile();
-        }
+        // }
     }
 
     private void CreateProjectile()
     {
         GameObject go  = Managers.Resource.Instantiate("Bullet");
         go.transform.position = projectileSpawnPosition.position;
-        go.transform.SetParent(projectileSpawnPosition);
-        go.GetComponent<Bullet>().SetSo(Stats);
+        //go.GetComponent<Bullet>().SetSo(Stats);
     }
 }

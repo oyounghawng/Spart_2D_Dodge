@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf73ab05ecd4e1e47aa542029526878e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -96,9 +96,8 @@ GameObject:
   - component: {fileID: -2647483888404203135}
   - component: {fileID: -6469730293922802028}
   - component: {fileID: 9044179818836193772}
-  - component: {fileID: -3680009626739820227}
   m_Layer: 9
-  m_Name: Bullet
+  m_Name: SecondBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,8 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletStat:
     statsChangeType: 0
-    BulletName: Bullet
-    bulletSO: {fileID: 11400000, guid: 1177141846cfcdd4885c253c78c820b8, type: 2}
+    BulletName: SecondBullet
+    bulletSO: {fileID: 11400000, guid: d10aeb87781737e4786b757f8f346fe7, type: 2}
 --- !u!114 &9044179818836193772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,30 +193,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUsing: 0
---- !u!50 &-3680009626739820227
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8774840357336985302}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

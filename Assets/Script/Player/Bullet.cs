@@ -5,39 +5,26 @@ using UnityEngine.InputSystem.Layouts;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed;
-    public float dmg;
-    private Vector2 direction;
-    private Rigidbody2D rigid;
-
-    private void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-    }
+    [SerializeField] public BulletStat bulletStat;
 
     private void Update()
     {
-        rigid.velocity = Vector3.up * speed;
-        //this.transform.Translate(Vector3.up * this.speed * Time.deltaTime,Space.Self);
+        this.transform.Translate(Vector3.up * bulletStat.bulletSO.speed * Time.deltaTime);
         if (this.transform.position.y > 20)
         {
             Managers.Resource.Destroy(this.gameObject);
         }
+    
     }
     private void OnEnable()
     {
         transform.rotation = Quaternion.identity;
     }
 
-    public void SetDirection(Vector2 direction)
-    {
-        this.direction = direction;
-    }
-
-    public void SetSo(CharacterStatsHandler stathandler)
-    {
-        dmg = stathandler.CurrentStat.attackSO.power;
-    }
+    // public void SetSo(CharacterStatsHandler stathandler)
+    // {
+    //     dmg = stathandler.CurrentStat.attackSO.power;
+    // }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
