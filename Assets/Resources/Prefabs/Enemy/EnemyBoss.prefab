@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 2, z: 0}
+  m_LocalScale: {x: 3, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1550442595035555725}
@@ -47,22 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844a153104c534845b0d673affcc9132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 0
   health: 100
-  sprites:
-  - {fileID: 2192450021786810173, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
-  - {fileID: -7945901444079236628, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
-  spriteRenderer: {fileID: 0}
-  rigid: {fileID: 0}
-  Coin: {fileID: 0}
-  Boom: {fileID: 0}
-  Power: {fileID: 0}
-  player: {fileID: 0}
-  patternIndex: 0
+  patternIndex: -1
   curPatternCount: 0
-  maxPatternCount: 2700000027000000
-  curShotDelay: 3
-  maxShotDelay: 3
+  maxPatternCount: 630000000f000000
+  curShotDelay: 0
+  maxShotDelay: 0
 --- !u!50 &6822621906224923632
 Rigidbody2D:
   serializedVersion: 4

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
-    protected float health;
+    public float health;
     protected float Maxhealth;
 
     protected Rigidbody2D rigid;
