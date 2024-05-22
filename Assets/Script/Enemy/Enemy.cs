@@ -8,12 +8,15 @@ public class Enemy : MonoBehaviour
     public float health;
     public Sprite[] sprites;
 
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rigid;
+    public SpriteRenderer spriteRenderer;
+    public Rigidbody2D rigid;
 
     public GameObject Coin;
     public GameObject Boom;
     public GameObject Power;
+    public GameObject player;
+    public ObjectManager objectManager;
+
 
     protected void Awake()
     {
@@ -24,20 +27,20 @@ public class Enemy : MonoBehaviour
 
     protected void Update()
     {
-        if (transform.position.y < -6f)
+        if (transform.position.y < -13f)
         {
-           Managers.Resource.Destroy(gameObject);
-        } 
+            Managers.Resource.Destroy(gameObject);
+        }
     }
-    public void OnHit(float dmg)
+    public void OnHit(int dmg)
     {
         health -= dmg;
-        //spriteRenderer.sprite = sprites[0];
+        spriteRenderer.sprite = sprites[1];
         Invoke("ReturnSprite", 0.1f);
         if (health <= 0)
-        {
+            {
             return;
-        }
+            }
         int ran = Random.Range(0, 10);
         if (ran < 3) 
         {
@@ -68,12 +71,12 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "BorderBullet")
+        if (collision.gameObject.tag == "PlayerLimit")
             Destroy(gameObject);
         else if (collision.gameObject.tag == "Bullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            //OnHit(bullet.dmg);
+            OnHit(bullet.dmg);
         }
     }
 }
