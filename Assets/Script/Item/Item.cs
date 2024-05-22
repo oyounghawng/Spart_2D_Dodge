@@ -18,7 +18,6 @@ public class Item : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = Vector2.down * 0.5f;
     }
-
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

@@ -25,10 +25,10 @@ public class CharacterStatsHandler : MonoBehaviour
             maxHealth = baseStat.maxHealth,
             movementSpeed = baseStat.movementSpeed
         };
-        
         ApplyModifiers();
     }
-    
+
+
     private void ApplyModifiers()
     {
         foreach (var modifier in statModifiers)
@@ -52,12 +52,18 @@ public class CharacterStatsHandler : MonoBehaviour
 
     public void AddLevelEffect()
     {
+        if (baseStat.Level >= 3)
+            return;
+
         baseStat.Level = 1;
         UpdateCharacterStat();
     }
 
     public void AddMovementEffect()
     {
+        if (CurrentStat.movementSpeed >= 21)
+            return;
+
         CharacterStat addStat = new CharacterStat
         {
             statsChangeType = StatsChangeType.Add,
@@ -72,6 +78,9 @@ public class CharacterStatsHandler : MonoBehaviour
 
     public void AddHealthEffect()
     {
+        if (CurrentStat.maxHealth >= 8)
+            return;
+
         CharacterStat addStat = new CharacterStat
         {
             statsChangeType = StatsChangeType.Add,
@@ -79,8 +88,7 @@ public class CharacterStatsHandler : MonoBehaviour
         };
 
         addStat.maxHealth = 1;
-
         AddModifier(addStat);
-
+        (Managers.UI.SceneUI as UI_GameScene).UIHeartUpdate(CurrentStat.maxHealth, true);
     }
 }
