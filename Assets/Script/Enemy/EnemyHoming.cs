@@ -16,7 +16,6 @@ public class EnemyHoming : Enemy
         if (player != null)
         {
             Vector3 direction = (player.transform.position - transform.position).normalized;
-
             transform.position += direction * moveSpeed * Time.deltaTime;
         }
     }
