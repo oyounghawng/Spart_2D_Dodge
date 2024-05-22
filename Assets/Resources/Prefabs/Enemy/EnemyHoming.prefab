@@ -49,11 +49,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  health: 4
+  health: 10
   sprites:
   - {fileID: -1147401495359466748, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   - {fileID: -7844560889915226194, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
-  moveSpeed: 2
+  spriteRenderer: {fileID: 0}
+  rigid: {fileID: 0}
+  Coin: {fileID: 0}
+  Boom: {fileID: 0}
+  Power: {fileID: 0}
+  moveSpeed: 6
 --- !u!114 &1879421055645960648
 MonoBehaviour:
   m_ObjectHideFlags: 0
