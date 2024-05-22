@@ -4,7 +4,9 @@ public enum ItemType
 {
     Boom,
     Coin,
-    Power
+    Power,
+    Heal,
+    Movement,
 }
 public class Item : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class Item : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameScene gameScene = Managers.Scene.CurrentScene as GameScene;
+            CharacterStatsHandler statsHandler = collision.gameObject.GetComponent<CharacterStatsHandler>();
             switch (type)
             {
                 case ItemType.Coin:
@@ -31,9 +34,13 @@ public class Item : MonoBehaviour
                     gameScene.BoomCnt = 1;
                     break;
                 case ItemType.Power:
-                    CharacterStatsHandler statsHandler = collision.gameObject.GetComponent<CharacterStatsHandler>();
-                    statsHandler.BaseStat.LevelUp = 1;
-                    statsHandler.UpdateCharacterStat();
+                    statsHandler.AddLevelEffect();
+                    break;
+                case ItemType.Heal:
+                    statsHandler.AddHealthEffect();
+                    break;
+                case ItemType.Movement:
+                    statsHandler.AddMovementEffect();
                     break;
             }
             Managers.Resource.Destroy(this.gameObject);

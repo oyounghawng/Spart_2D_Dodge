@@ -19,20 +19,10 @@ public class CharacterStat
         }
         set
         {
-            if (level >= 4)
-            {
-                level = 4;
-            }
-            else
-                level = value;
-        }
-    }
-    public int LevelUp
-    {
-        set
-        {
             if (level >= 3)
+            {
                 level = 3;
+            }
             else
                 level += value;
         }

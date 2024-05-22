@@ -4,13 +4,18 @@ using UnityEngine;
 public class CharacterStatsHandler : MonoBehaviour
 {
     [SerializeField] private CharacterStat baseStat;
+    public CharacterStat BaseStat
+    {
+        get { return baseStat; }
+        private set { }
+    }
     public CharacterStat CurrentStat { get; private set; }
-    //public DodgeController controller;
+    public DodgeController controller;
     public List<CharacterStat> statModifiers = new List<CharacterStat>();
 
     private void Awake() 
     {
-        //controller = GetComponent<DodgeController>();
+        controller = GetComponent<DodgeController>();
         UpdateCharacterStat();
     }
 
@@ -50,6 +55,12 @@ public class CharacterStatsHandler : MonoBehaviour
         UpdateCharacterStat();
     }
 
+    public void AddLevelEffect()
+    {
+        BaseStat.Level = 1;
+        UpdateCharacterStat();
+    }
+
     public void AddMovementEffect()
     {
         CharacterStat addStat = new CharacterStat
@@ -58,7 +69,7 @@ public class CharacterStatsHandler : MonoBehaviour
             bulletSO = ScriptableObject.CreateInstance<BulletSO>()
         };
 
-        addStat.movementSpeed = 5;
+        addStat.movementSpeed = 2;
 
         AddModifier(addStat);
 
