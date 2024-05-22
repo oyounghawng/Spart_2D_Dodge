@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: -4006508681585401479}
   - component: {fileID: 610121948998825187}
   - component: {fileID: -188726383498633982}
+  - component: {fileID: -7662075578715475134}
   m_Layer: 6
   m_Name: EnemyMob
   m_TagString: Enemy
@@ -132,7 +133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  health: 10
 --- !u!50 &610121948998825187
 Rigidbody2D:
   serializedVersion: 4
@@ -205,3 +205,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0234225, y: 1.0364618}
   m_EdgeRadius: 0
+--- !u!114 &-7662075578715475134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7614323840375343852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3f36e8bfc61df41a99b4c5aa39eb23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 0

@@ -1,19 +1,27 @@
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class CharacterStatsHandler : MonoBehaviour
 {
     [SerializeField] private CharacterStat baseStat;
+    public int CharacterIdx = 0;
     public CharacterStat CurrentStat { get; private set; }
     public DodgeController controller;
+    public DodgeAnimation animaion;
     public List<CharacterStat> statModifiers = new List<CharacterStat>();
 
     private void Awake() 
     {
         controller = GetComponent<DodgeController>();
+        animaion = GetComponent<DodgeAnimation>();
+        CharacterIdx = Managers.Game.SaveData.CharacterIdx;
         UpdateCharacterStat();
     }
-
+    private void Start()
+    {
+        animaion.SetImage(baseStat.bulletSO.playerCharacterSO[CharacterIdx].ActiveSprite[0]);
+    }
     public void UpdateCharacterStat() 
     {
         BulletSO _bulletSO = baseStat.bulletSO;
@@ -56,12 +64,16 @@ public class CharacterStatsHandler : MonoBehaviour
             return;
 
         baseStat.Level = 1;
+        int idx = baseStat.Level;
+        if (idx > 2)
+            idx = 2;
+        animaion.SetImage(baseStat.bulletSO.playerCharacterSO[CharacterIdx].ActiveSprite[idx]);
         UpdateCharacterStat();
     }
 
     public void AddMovementEffect()
     {
-        if (CurrentStat.movementSpeed >= 21)
+        if (CurrentStat.movementSpeed >= 16)
             return;
 
         CharacterStat addStat = new CharacterStat

@@ -5,6 +5,12 @@ using UnityEngine;
 public class DodgeAnimation : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
-    CharacterStatsHandler characterStatsHandler;
-    
+    private void Awake()
+    {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+    public void SetImage(Sprite _sprite)
+    {
+        spriteRenderer.sprite = _sprite;
+    }
 }

@@ -7,4 +7,7 @@ public class BulletSO : AttackSO
 {
     [Header("Bullet Info")]
     public Sprite[] bulletSprite;
+
+    [Header("Flight Info")]
+    public PlayerCharacterSO[] playerCharacterSO;
 }

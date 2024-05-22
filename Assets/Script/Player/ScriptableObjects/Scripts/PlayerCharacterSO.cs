@@ -7,5 +7,4 @@ public class PlayerCharacterSO : ScriptableObject
 {
     public Sprite[] ActiveSprite;
     public Sprite[] DeActiveSprites;
-    public float MaxHP;
 }

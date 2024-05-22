@@ -82,10 +82,12 @@ public class Enemy : MonoBehaviour
             int curHealth = statsHandler.CurrentStat.maxHealth;
             (Managers.UI.SceneUI as UI_GameScene).UIHeartUpdate(curHealth, false);
             statsHandler.CurrentStat.maxHealth--;
+            Managers.Resource.Destroy(this.gameObject);
             if (statsHandler.CurrentStat.maxHealth <= 0)
             {
                 Managers.UI.ShowPopupUI<UI_GameOver>();
-            }  
+            } 
+            
         }
     }
 }

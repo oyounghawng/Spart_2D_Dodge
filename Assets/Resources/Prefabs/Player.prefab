@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 5407861959409998463}
   - component: {fileID: 254943284214888170}
   - component: {fileID: 6553510950543978175}
+  - component: {fileID: 9105898807759200272}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -265,7 +266,9 @@ MonoBehaviour:
     maxHealth: 1
     movementSpeed: 4
     bulletSO: {fileID: 11400000, guid: 1177141846cfcdd4885c253c78c820b8, type: 2}
+  CharacterIdx: 0
   controller: {fileID: 0}
+  animaion: {fileID: 0}
   statModifiers: []
 --- !u!61 &6553510950543978175
 BoxCollider2D:
@@ -312,3 +315,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.02, y: 0.78}
   m_EdgeRadius: 0
+--- !u!114 &9105898807759200272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5425979171832392015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dab54c60422d44fb85118bfbea57a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

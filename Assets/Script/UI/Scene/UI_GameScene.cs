@@ -86,6 +86,7 @@ public class UI_GameScene : UI_Scene
             Enemy enemyScript = enemies[i].GetComponent<Enemy>();
             enemyScript.OnHit(1000);
         }
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Boom");
         /*
         GameObject[] enemyBullet = GameObject.FindGameObjectsWithTag("EnemyBullet");
         for(int i = 0; i <enemyBullet.Length; i++)

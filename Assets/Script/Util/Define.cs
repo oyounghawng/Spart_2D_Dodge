@@ -11,6 +11,13 @@ public class Define : MonoBehaviour
         LobbyScene,
         GameScene,
     }
+    public enum Character
+    {
+        Blue,
+        Red,
+        Green,
+        Yellow,
+    }
 
     public enum Sound
     {
