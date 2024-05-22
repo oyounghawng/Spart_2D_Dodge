@@ -261,16 +261,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStat:
+    Level: 2
     statsChangeType: 2
-    maxHealth: 2
-    movementSpeed: 4
+    maxHealth: 1
+    movementSpeed: 8
     bulletSO: {fileID: 11400000, guid: 1177141846cfcdd4885c253c78c820b8, type: 2}
-  controller: {fileID: 0}
-  statModifiers:
-  - statsChangeType: 0
-    maxHealth: 2
-    movementSpeed: 3
-    bulletSO: {fileID: 0}
+  statModifiers: []
 --- !u!61 &6553510950543978175
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -4,22 +4,17 @@ using UnityEngine;
 public class CharacterStatsHandler : MonoBehaviour
 {
     [SerializeField] private CharacterStat baseStat;
-    public CharacterStat BaseStat
-    {
-        get { return baseStat; }
-        private set { }
-    }
     public CharacterStat CurrentStat { get; private set; }
-    public DodgeController controller;
+    //public DodgeController controller;
     public List<CharacterStat> statModifiers = new List<CharacterStat>();
 
-    private void Awake()
+    private void Awake() 
     {
-        controller = GetComponent<DodgeController>();
+        //controller = GetComponent<DodgeController>();
         UpdateCharacterStat();
     }
 
-    public void UpdateCharacterStat()
+    public void UpdateCharacterStat() 
     {
         BulletSO _bulletSO = baseStat.bulletSO;
         CurrentStat = new CharacterStat
@@ -30,34 +25,19 @@ public class CharacterStatsHandler : MonoBehaviour
             maxHealth = baseStat.maxHealth,
             movementSpeed = baseStat.movementSpeed
         };
-
-        //ApplyModifiers();
+        
+        ApplyModifiers();
     }
-
+    
     private void ApplyModifiers()
     {
         foreach (var modifier in statModifiers)
         {
-            if (modifier.bulletSO != null)
-            {/*
-                if (CurrentStat.bulletSO == null)
-                {
-                    CurrentStat.bulletSO = Instantiate(modifier.attackSO);
-                }
-                else
-                {
-                    CurrentStat.bulletSO.delay += modifier.bulletSO.delay;
-                    CurrentStat.bulletSO.power += modifier.bulletSO.power;
-                    CurrentStat.bulletSO.speed += modifier.bulletSO.speed;
-                }
-                */
-            }
-
             CurrentStat.maxHealth += modifier.maxHealth;
             CurrentStat.movementSpeed += modifier.movementSpeed;
         }
     }
-
+    
     public void AddModifier(CharacterStat modifier)
     {
         statModifiers.Add(modifier);
@@ -68,5 +48,33 @@ public class CharacterStatsHandler : MonoBehaviour
     {
         statModifiers.Remove(modifier);
         UpdateCharacterStat();
+    }
+
+    public void AddMovementEffect()
+    {
+        CharacterStat addStat = new CharacterStat
+        {
+            statsChangeType = StatsChangeType.Add,
+            bulletSO = ScriptableObject.CreateInstance<BulletSO>()
+        };
+
+        addStat.movementSpeed = 5;
+
+        AddModifier(addStat);
+
+    }
+
+    public void AddHealthEffect()
+    {
+        CharacterStat addStat = new CharacterStat
+        {
+            statsChangeType = StatsChangeType.Add,
+            bulletSO = ScriptableObject.CreateInstance<BulletSO>()
+        };
+
+        addStat.maxHealth = 1;
+
+        AddModifier(addStat);
+
     }
 }
