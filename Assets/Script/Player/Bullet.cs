@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
         transform.rotation = Quaternion.identity;
         level = characterStat.Level;
         spriteRenderer.sprite = characterStat.bulletSO.bulletSprite[level];
+        dmg = (int)characterStat.bulletSO.power[level];
     }
 
     public void SetSo(CharacterStat _characterStat)

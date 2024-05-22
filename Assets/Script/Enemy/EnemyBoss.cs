@@ -12,7 +12,16 @@ public class EnemyBoss : Enemy
     public float curShotDelay;
     public float maxShotDelay;
 
-    private new void Update()
+    protected override void Awake()
+    {
+        base.Awake();
+        Maxhealth = 100;
+    }
+    private void OnEnable()
+    {
+        health = Maxhealth;
+    }
+    protected override void Update()
     {
         curShotDelay += Time.deltaTime;
 
@@ -91,10 +100,10 @@ public class EnemyBoss : Enemy
         else
             Invoke("Think", 3f);
     }
-
+        
     void FireBullet()
     {
-        GameObject bullet = Managers.Resource.Instantiate("Enemy/BulletEnemyB");
+        GameObject bullet = Managers.Resource.Instantiate("Enemy/BulletEnemyB", this.transform);
         bullet.transform.position = transform.position;
         bullet.transform.rotation = Quaternion.identity;
 

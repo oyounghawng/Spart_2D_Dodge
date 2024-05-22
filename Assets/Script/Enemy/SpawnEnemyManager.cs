@@ -17,8 +17,8 @@ public class SpawnEnemyManager : MonoBehaviour
 
     private void Awake()
     {
-        mobSpawnTime = 2f;
-        homingSpawnTime = 4f;
+        mobSpawnTime = 1f;
+        homingSpawnTime = 2f;
         player = Managers.Object.Player;
     }
 

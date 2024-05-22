@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyHoming : Enemy
 {
-    public float moveSpeed = 0.0f;
+    private float moveSpeed = 0.0f;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
+        moveSpeed = 3f;
     }
     private new void Update()
     {

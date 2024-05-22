@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8278941068349732774}
   m_Layer: 6
   m_Name: EnemyHoming
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,14 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   health: 10
-  sprites:
-  - {fileID: -1147401495359466748, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
-  - {fileID: -7844560889915226194, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
-  spriteRenderer: {fileID: 0}
-  rigid: {fileID: 0}
-  Coin: {fileID: 0}
-  Boom: {fileID: 0}
-  Power: {fileID: 0}
   moveSpeed: 6
 --- !u!114 &1879421055645960648
 MonoBehaviour:

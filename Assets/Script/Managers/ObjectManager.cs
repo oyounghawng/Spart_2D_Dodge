@@ -32,6 +32,10 @@ public class ObjectManager
     {
         GameObject go = Managers.Resource.Load<GameObject>("Prefabs/Player");
         Player = go;
+        go.transform.position = new Vector2(0, -6.5f);
         Managers.Resource.Instantiate(go);
+        Managers.Resource.Instantiate("BackGround");
+        Managers.Resource.Instantiate("Collider");
+        Managers.Resource.Instantiate("EnemySpawner");
     }
 }

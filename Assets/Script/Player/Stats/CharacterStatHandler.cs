@@ -4,11 +4,6 @@ using UnityEngine;
 public class CharacterStatsHandler : MonoBehaviour
 {
     [SerializeField] private CharacterStat baseStat;
-    public CharacterStat BaseStat
-    {
-        get { return baseStat; }
-        private set { }
-    }
     public CharacterStat CurrentStat { get; private set; }
     public DodgeController controller;
     public List<CharacterStat> statModifiers = new List<CharacterStat>();
@@ -57,7 +52,7 @@ public class CharacterStatsHandler : MonoBehaviour
 
     public void AddLevelEffect()
     {
-        BaseStat.Level = 1;
+        baseStat.Level = 1;
         UpdateCharacterStat();
     }
 

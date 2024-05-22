@@ -6,11 +6,12 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class UI_GameScene : UI_Scene
 {
-    public int boom;
+    private int boom;
+    private bool Isboom = false;
     enum GameObjects
     {
         Boom,
-        boomEffect
+        BoomEfect,
     }
     enum Texts
     {
@@ -32,43 +33,46 @@ public class UI_GameScene : UI_Scene
 
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(Pause);
         GetObject((int)GameObjects.Boom).BindEvent(Boom);
+        GetObject((int)GameObjects.BoomEfect).SetActive(false);
     }
-
     void Pause(PointerEventData evt)
     {
         Time.timeScale = 0f;
         Managers.UI.ShowPopupUI<UI_Pause>();
     }
-    public GameObject boomEffect;
     void Boom(PointerEventData evt)
     {
-        //Boom ·ÎÁ÷ÀÛ¼º!
         Debug.Log("ºÕ!");
-        if (Input.GetButton("Boom"))
+        GameScene gameScene = Managers.Scene.CurrentScene as GameScene;
+        boom = gameScene.BoomCnt;
+        if (boom == 0 || Isboom)
         {
             return;
         }
-        if(boom == 0)
-        {
-            return;
-        }
-        boom -= 1;
-
-        boomEffect.SetActive(true);
-
-        Invoke("offBoomEffect", 4f);
+        gameScene.BoomCnt = -1;
+        StartCoroutine(BoomEffect());
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < enemies.Length; i++) 
         {
-            Enemy enemyScript = enemies[1].GetComponent<Enemy>();
+            Enemy enemyScript = enemies[i].GetComponent<Enemy>();
             enemyScript.OnHit(1000);
         }
+        /*
         GameObject[] enemyBullet = GameObject.FindGameObjectsWithTag("EnemyBullet");
         for(int i = 0; i <enemyBullet.Length; i++)
         {
             Destroy(enemyBullet[i]);
         }
+        */
+    }
 
-        
+    private IEnumerator BoomEffect()
+    {
+        GameObject go = GetObject((int)GameObjects.BoomEfect);
+        go.SetActive(true);
+        Isboom = true;
+        yield return new WaitForSeconds(2f);
+        Isboom = false;
+        go.SetActive(false);
     }
 }
