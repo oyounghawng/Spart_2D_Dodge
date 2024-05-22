@@ -1,53 +1,126 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyBoss : MonoBehaviour
+public class EnemyBoss : Enemy
 {
-    public float speed;
-    public int health;
+    public int patternIndex;
+    public int curPatternCount;
+    public int[] maxPatternCount;
 
-    private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rigid;
+    public float curShotDelay;
+    public float maxShotDelay;
 
-    private void Awake()
+    protected override void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rigid = GetComponent<Rigidbody2D>();
-        rigid.velocity = Vector2.down * speed;
+        base.Awake();
+        Maxhealth = 100;
     }
-
-    private void Start()
+    private void OnEnable()
     {
-        Invoke("Stop", 3f);
+        health = Maxhealth;
+    }
+    protected override void Update()
+    {
+        curShotDelay += Time.deltaTime;
+
+        if (curShotDelay >= maxShotDelay)
+        {
+            Fire();
+            curShotDelay = 0;
+        }
+
+        if (transform.position.y <= 6f)
+        {
+            Stop();
+        }
     }
 
     private void Stop()
-    {   
+    {
         if (!gameObject.activeSelf)
             return;
+
+        Rigidbody2D rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = Vector2.zero;
     }
-    public void OnHit(int dmg = 10)
+
+    void Think()
     {
-        health -= dmg;
-        if (health <= 0)
+        patternIndex = (patternIndex + 1) % 2;
+        curPatternCount = 0;
+        curShotDelay = 0;  
+
+        switch (patternIndex)
         {
-            Destroy(gameObject);
+            case 0:
+                Invoke("FireShot", maxShotDelay);
+                break;
+            case 1:
+                Invoke("FireBullet", maxShotDelay); 
+                break;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void Fire()
     {
-        if (collision.gameObject.tag == "BorderBullet")
+        if (curShotDelay < maxShotDelay)
+            return;
+
+        switch (patternIndex)
         {
-            Destroy(gameObject);
+            case 0:
+                FireShot();
+                break;
+            case 1:
+                FireBullet();
+                break;
         }
-        else if (collision.gameObject.tag == "PlayerBullet")
+    }
+
+    void FireShot()
+    {
+        int roundNumA = 39;
+        for (int index = 0; index < roundNumA; index++)
         {
-            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            OnHit();
-            Destroy(collision.gameObject);
+            GameObject bullet = Managers.Resource.Instantiate("Enemy/BulletEnemyA", this.transform);
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.identity;
+
+            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+            Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI * 2 * index / roundNumA), Mathf.Cos(Mathf.PI * 2 * index / roundNumA));
+            rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
         }
+
+        curPatternCount++;
+        curShotDelay = 0; 
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireShot", maxShotDelay);  
+        else
+            Invoke("Think", 3f);
+    }
+        
+    void FireBullet()
+    {
+        GameObject bullet = Managers.Resource.Instantiate("Enemy/BulletEnemyB", this.transform);
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = Quaternion.identity;
+
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        Vector2 dirVec = new Vector2(Mathf.Sin((float)curPatternCount / maxPatternCount[patternIndex]), -1);
+        rigid.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
+
+        curPatternCount++;
+        curShotDelay = 0;  
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireBullet", 1f);  
+        else
+            Invoke("Think", 5f);  
+    }
+
+    void Reload()
+    {
+        curShotDelay += Time.deltaTime;
     }
 }

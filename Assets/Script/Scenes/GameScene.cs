@@ -33,6 +33,7 @@ public class GameScene : BaseScene
 
         Managers.Object.SpawnPlayer();
         Managers.UI.ShowSceneUI<UI_GameScene>();
+        boomcnt = 1;
     }
     public override void Clear()
     {

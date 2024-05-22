@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.Layouts;
 
 public class Bullet : MonoBehaviour
 {
+    public int dmg;
     private CharacterStat characterStat;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigid;
@@ -32,13 +33,13 @@ public class Bullet : MonoBehaviour
         transform.rotation = Quaternion.identity;
         level = characterStat.Level;
         spriteRenderer.sprite = characterStat.bulletSO.bulletSprite[level];
+        dmg = (int)characterStat.bulletSO.power[level];
     }
 
     public void SetSo(CharacterStat _characterStat)
     {
         characterStat = _characterStat;
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerLimit"))

@@ -5,75 +5,78 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
-    public float health;
-    public Sprite[] sprites;
+    protected float health;
+    protected float Maxhealth;
 
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rigid;
+    protected Rigidbody2D rigid;
+    protected GameObject player;
 
-    public GameObject Coin;
-    public GameObject Boom;
-    public GameObject Power;
-
-    protected void Awake()
+    protected virtual void Awake()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = Vector2.down * speed;
+        Maxhealth = 2;
+    }
+    private void OnEnable()
+    {
+        health = Maxhealth;
+        transform.rotation = Quaternion.identity;
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
-        if (transform.position.y < -6f)
+        if (transform.position.y < -13f)
         {
-           Managers.Resource.Destroy(gameObject);
-        } 
+            Managers.Resource.Destroy(gameObject);
+        }
     }
-    public void OnHit(float dmg)
+    public void OnHit(int dmg)
     {
         health -= dmg;
-        //spriteRenderer.sprite = sprites[0];
-        Invoke("ReturnSprite", 0.1f);
         if (health <= 0)
         {
-            return;
+            int ran = Random.Range(0, 11);
+            GameObject go = null;
+            if(ran < 3)
+            {
+                go = Managers.Resource.Instantiate("Item/Item Coin");
+            }
+            else if (ran < 5)
+            {
+                go = Managers.Resource.Instantiate("Item/Item Heal");
+            }
+            else if (ran < 7)
+            {
+                go = Managers.Resource.Instantiate("Item/Item Movement");
+            }
+            else if (ran < 9)
+            {
+                go = Managers.Resource.Instantiate("Item/Item Boom");
+            }
+            else if (ran < 11)
+            {
+                go = Managers.Resource.Instantiate("Item/Item Power");
+            }
+            if (go != null)
+                go.transform.position = this.transform.position;
+            Destroy(gameObject);
         }
-        int ran = Random.Range(0, 10);
-        if (ran < 3) 
-        {
-            Debug.Log("Not Item");
-            
-        }
-        else if(ran < 5)
-        {
-            Managers.Resource.Instantiate("Item/Item Coin");// 아이템 랜덤으로 떨어지는거 만들기
-        }
-        else if(ran < 8)
-        {
-            Managers.Resource.Instantiate("Item/Item Boom");
-        }
-        else if (ran < 10) 
-        {
-            Managers.Resource.Instantiate("Item/Item Power");
-        }
-        Destroy(gameObject);
-
-
     }
-
-    public void ReturnSprite()
-    {
-        spriteRenderer.sprite = sprites[0];
-    }
-
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "BorderBullet")
-            Destroy(gameObject);
+        if (collision.gameObject.tag == "PlayerLimit")
+        {
+            Managers.Resource.Destroy(this.gameObject);
+        }
         else if (collision.gameObject.tag == "Bullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            //OnHit(bullet.dmg);
+            OnHit(bullet.dmg);
+            Managers.Resource.Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            //GameOver만들기
         }
     }
 }

@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 5425979171832392015}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -262,15 +262,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStat:
     statsChangeType: 2
-    maxHealth: 2
+    maxHealth: 1
     movementSpeed: 4
     bulletSO: {fileID: 11400000, guid: 1177141846cfcdd4885c253c78c820b8, type: 2}
   controller: {fileID: 0}
-  statModifiers:
-  - statsChangeType: 0
-    maxHealth: 2
-    movementSpeed: 3
-    bulletSO: {fileID: 0}
+  statModifiers: []
 --- !u!61 &6553510950543978175
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -11,10 +11,14 @@ public class SpawnEnemyManager : MonoBehaviour
 
     [SerializeField] private Transform spawnPoint1;
     [SerializeField] private Transform spawnPoint2;
+    [SerializeField] private Transform spawnPoint3;
+    [SerializeField] private Transform BossPoint;
+
+
     private void Awake()
     {
-        mobSpawnTime = 2f;
-        homingSpawnTime = 6f;
+        mobSpawnTime = 1f;
+        homingSpawnTime = 2f;
         player = Managers.Object.Player;
     }
 
@@ -22,6 +26,7 @@ public class SpawnEnemyManager : MonoBehaviour
     {
         StartCoroutine(SpawnEnemies());
     }
+
     private IEnumerator SpawnEnemies()
     {
         StartCoroutine(SpawnMob());
@@ -47,9 +52,9 @@ public class SpawnEnemyManager : MonoBehaviour
     {
         while (true)
         {
-            float positionX = Random.Range(-2.4f, 2.4f);
+            float positionX = Random.Range(-4.5f, 4.5f);
             GameObject enemy = Managers.Resource.Instantiate("Enemy/EnemyMob", this.transform);
-            enemy.transform.position = new Vector3(positionX, 5.6f, 0.0f);
+            enemy.transform.position = new Vector3(positionX, spawnPoint1.position.y, 0.0f);
             yield return new WaitForSeconds(mobSpawnTime);
         }
     }
@@ -58,9 +63,9 @@ public class SpawnEnemyManager : MonoBehaviour
     {
         while (true)
         {
-            float positionX = Random.Range(-2.4f, 2.4f);
+            Transform spawnPoint = Random.Range(0, 3) == 0 ? spawnPoint1 : spawnPoint3;
             GameObject enemy = Managers.Resource.Instantiate("Enemy/EnemyHoming", this.transform);
-            enemy.transform.position = new Vector3(positionX, 5.6f, 0.0f);
+            enemy.transform.position = spawnPoint.position;
             EnemyHoming enemyHoming = Util.GetOrAddComponent<EnemyHoming>(enemy);
             enemyHoming.SetInfo(player);
 
@@ -71,7 +76,7 @@ public class SpawnEnemyManager : MonoBehaviour
     private void SpawnBoss()
     {
         GameObject go = Managers.Resource.Instantiate("Enemy/EnemyBoss", this.transform);
-        go.transform.position = new Vector3(0f, 6.2f, 0f);
+        go.transform.position = BossPoint.position;
     }
 
     private IEnumerator BossCooldown()
