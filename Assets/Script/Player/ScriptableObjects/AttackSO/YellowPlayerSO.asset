@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa72d3b729f33934a9cfb8c64ec6b006, type: 3}
+  m_Name: YellowPlayerSO
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacterSO
+  ActiveSprite:
+  - {fileID: 21300000, guid: 030d95b2ee8ccc447812c066ef1158a2, type: 3}
+  - {fileID: 21300000, guid: 0b3d8871c111f1b4fa50cfc061acd3a4, type: 3}
+  - {fileID: 21300000, guid: 7ad2ff06e2d861f479a0abb4e23f7e61, type: 3}
+  DeActiveSprites:
+  - {fileID: 21300000, guid: 84462839c5c13f14db7599716fbffce5, type: 3}
+  - {fileID: 21300000, guid: a7574d4449e4c514e9619aa6d89b8628, type: 3}
+  - {fileID: 21300000, guid: a60669dc162fb454390303a45c45f213, type: 3}

@@ -61,7 +61,7 @@ public class Managers : MonoBehaviour
 
     public static void Clear()
     {
-        Sound.Clear();
+        //Sound.Clear(); 씬넘어갔을때 음향초기화
         Scene.Clear();
         UI.Clear();
         Pool.Clear();
