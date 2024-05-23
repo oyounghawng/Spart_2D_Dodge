@@ -6,13 +6,15 @@ public class SpawnEnemyManager : MonoBehaviour
 {
     private float mobSpawnTime;
     private float homingSpawnTime;
-    private bool spawnBoss = false;
     private GameObject player;
 
     [SerializeField] private Transform spawnPoint1;
     [SerializeField] private Transform spawnPoint2;
     [SerializeField] private Transform spawnPoint3;
     [SerializeField] private Transform BossPoint;
+
+    private bool spawnBoss = false;
+
 
 
     private void Awake()
@@ -52,6 +54,11 @@ public class SpawnEnemyManager : MonoBehaviour
     {
         while (true)
         {
+            if (spawnBoss)
+            {
+                yield return null;
+                continue;
+            }
             float positionX = Random.Range(-4.5f, 4.5f);
             GameObject enemy = Managers.Resource.Instantiate("Enemy/EnemyMob", this.transform);
             enemy.transform.position = new Vector3(positionX, spawnPoint1.position.y, 0.0f);
@@ -63,6 +70,11 @@ public class SpawnEnemyManager : MonoBehaviour
     {
         while (true)
         {
+            if (spawnBoss)
+            {
+                yield return null;
+                continue;
+            }
             Transform spawnPoint = Random.Range(0, 3) == 0 ? spawnPoint1 : spawnPoint3;
             GameObject enemy = Managers.Resource.Instantiate("Enemy/EnemyHoming", this.transform);
             enemy.transform.position = spawnPoint.position;
