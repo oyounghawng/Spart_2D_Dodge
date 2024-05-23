@@ -16,7 +16,7 @@ public class EnemyBoss : Enemy
     protected override void Awake()
     {
         base.Awake();
-        Maxhealth = 100;
+        Maxhealth = 200;
         health = Maxhealth;
         speed = 2f;
         rigid.velocity = Vector2.down * speed;

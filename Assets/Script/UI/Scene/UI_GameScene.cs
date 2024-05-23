@@ -86,7 +86,7 @@ public class UI_GameScene : UI_Scene
             Enemy enemyScript = enemies[i].GetComponent<Enemy>();
             enemyScript.OnHit(1000);
         }
-        Managers.Sound.Play(Define.Sound.Effect, "Effect/Boom");
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Boom", 0.3f);
         /*
         GameObject[] enemyBullet = GameObject.FindGameObjectsWithTag("EnemyBullet");
         for(int i = 0; i <enemyBullet.Length; i++)
@@ -113,6 +113,6 @@ public class UI_GameScene : UI_Scene
     public void UIHeartUpdate(int idx, bool IsActive)
     {
         GameObject gridPanel = GetObject((int)GameObjects.LifegridPanel);
-        gridPanel.transform.GetChild(idx-1).gameObject.SetActive(IsActive);
+        gridPanel.transform.GetChild(idx - 1).gameObject.SetActive(IsActive);
     }
 }
