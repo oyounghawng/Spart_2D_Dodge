@@ -11,113 +11,102 @@ public class EnemyBoss : Enemy
 
     public float curShotDelay;
     public float maxShotDelay;
+    private bool isThinking = false; // Added field
 
     protected override void Awake()
     {
         base.Awake();
-        Maxhealth = 100;
-    }
-    private void OnEnable()
-    {
+        Maxhealth = 200;
         health = Maxhealth;
+        speed = 2f;
+        rigid.velocity = Vector2.down * speed;
     }
+
+    //void OnEnable()
+    //{
+    //    health = Maxhealth;
+    //}
+
     protected override void Update()
     {
-        curShotDelay += Time.deltaTime;
-
-        if (curShotDelay >= maxShotDelay)
-        {
-            Fire();
-            curShotDelay = 0;
-        }
-
         if (transform.position.y <= 6f)
         {
             Stop();
         }
     }
 
-    private void Stop()
+    void Stop()
     {
-        if (!gameObject.activeSelf)
+        if (!gameObject.activeSelf || isThinking) 
             return;
 
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = Vector2.zero;
+        isThinking = true; // Set the flag
+        Invoke("Think", 2);
     }
 
     void Think()
     {
-        patternIndex = (patternIndex + 1) % 2;
+        patternIndex = patternIndex == 1 ? 0 : patternIndex + 1;
         curPatternCount = 0;
-        curShotDelay = 0;  
-
         switch (patternIndex)
         {
             case 0:
-                Invoke("FireShot", maxShotDelay);
-                break;
-            case 1:
-                Invoke("FireBullet", maxShotDelay); 
-                break;
-        }
-    }
-
-    void Fire()
-    {
-        if (curShotDelay < maxShotDelay)
-            return;
-
-        switch (patternIndex)
-        {
-            case 0:
-                FireShot();
-                break;
-            case 1:
                 FireBullet();
                 break;
+            case 1:
+                FireShot();
+                break;
         }
     }
 
-    void FireShot()
-    {
-        int roundNumA = 39;
-        for (int index = 0; index < roundNumA; index++)
-        {
-            GameObject bullet = Managers.Resource.Instantiate("Enemy/BulletEnemyA", this.transform);
-            bullet.transform.position = transform.position;
-            bullet.transform.rotation = Quaternion.identity;
 
-            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-            Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI * 2 * index / roundNumA), Mathf.Cos(Mathf.PI * 2 * index / roundNumA));
-            rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
-        }
-
-        curPatternCount++;
-        curShotDelay = 0; 
-        if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireShot", maxShotDelay);  
-        else
-            Invoke("Think", 3f);
-    }
-        
     void FireBullet()
     {
-        GameObject bullet = Managers.Resource.Instantiate("Enemy/BulletEnemyB", this.transform);
+        GameObject bullet = Managers.Resource.Instantiate("Enemy/BulletEnemyA", this.transform);
         bullet.transform.position = transform.position;
         bullet.transform.rotation = Quaternion.identity;
 
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-        Vector2 dirVec = new Vector2(Mathf.Sin((float)curPatternCount / maxPatternCount[patternIndex]), -1);
+        Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI * 10 * curPatternCount / maxPatternCount[patternIndex]), -1);
         rigid.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
 
         curPatternCount++;
-        curShotDelay = 0;  
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireBullet", 1f);  
+            Invoke("FireBullet", 0.1f);
         else
-            Invoke("Think", 5f);  
+            Invoke("Think", 2f);
     }
+    void FireShot()
+    {
+        int roundNumA = 50;
+        int roundNumB = 40;
+        int roundNum = curPatternCount % 2 == 0 ? roundNumA : roundNumB;
+
+        for (int index = 0; index < roundNum; index++)
+        {
+            GameObject bullet = Managers.Resource.Instantiate("Enemy/BulletEnemyB", this.transform);
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.identity;
+
+            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+            Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNum),
+                                            Mathf.Sin(Mathf.PI * 2 * index / roundNum));
+
+            rigid.AddForce(dirVec.normalized * 2, ForceMode2D.Impulse);
+
+            Vector3 rotVec = Vector3.forward * 360 * index / roundNum + Vector3.forward * 90;
+            bullet.transform.Rotate(rotVec);
+        }
+
+        curPatternCount++;
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireShot", 1f);
+        else
+            Invoke("Think", 2f);
+    }
+
 
     void Reload()
     {

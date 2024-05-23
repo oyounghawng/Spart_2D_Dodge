@@ -35,3 +35,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c59fd138711a23d46a3a4de10829dab7, type: 3}
   - {fileID: 21300000, guid: 75971ad10f0b77746ae42fde2008c9d9, type: 3}
   - {fileID: 21300000, guid: bd5497fe86737cd4da18fcd58c928ec2, type: 3}
+  playerCharacterSO:
+  - {fileID: 11400000, guid: 6f81b41b1850d8f419e9ebd3694d8a70, type: 2}
+  - {fileID: 11400000, guid: d3345b292a98cc049ae7ae90d5d36703, type: 2}
+  - {fileID: 11400000, guid: 3debcbde95f97fd43a787e27d041ea8e, type: 2}
+  - {fileID: 11400000, guid: 95b1be1c663cb6043bcc1cf1073a79cd, type: 2}

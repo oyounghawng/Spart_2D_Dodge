@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
-    protected float health;
+    public float health;
     protected float Maxhealth;
 
     protected Rigidbody2D rigid;
@@ -35,6 +35,8 @@ public class Enemy : MonoBehaviour
         health -= dmg;
         if (health <= 0)
         {
+            GameScene gameScene = Managers.Scene.CurrentScene as GameScene;
+            gameScene.Score = 200;
             int ran = Random.Range(0, 11);
             GameObject go = null;
             if(ran < 3)
@@ -76,7 +78,16 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player")
         {
-            //GameOver만들기
+            CharacterStatsHandler statsHandler = collision.GetComponent<CharacterStatsHandler>();
+            int curHealth = statsHandler.CurrentStat.maxHealth;
+            (Managers.UI.SceneUI as UI_GameScene).UIHeartUpdate(curHealth, false);
+            statsHandler.CurrentStat.maxHealth--;
+            Managers.Resource.Destroy(this.gameObject);
+            if (statsHandler.CurrentStat.maxHealth <= 0)
+            {
+                Managers.UI.ShowPopupUI<UI_GameOver>();
+            } 
+            
         }
     }
 }

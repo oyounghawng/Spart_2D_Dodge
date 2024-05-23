@@ -62,6 +62,7 @@ public class UI_LobbyScene : UI_Scene
             Managers.UI.ShowPopupUI<UI_WarningSelectCharacter>();
             return;
         }
+        Managers.Game.SaveData.CharacterIdx = (SelectGameObject.name[12] - '0') -1;
         Managers.Scene.LoadScene(Define.SceneType.GameScene);
     }
 }

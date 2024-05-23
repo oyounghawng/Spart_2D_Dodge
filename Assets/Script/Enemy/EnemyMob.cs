@@ -8,7 +8,14 @@ public class EnemyMob : Enemy
 
     private void Start()
     {
+        speed = 6f;
         rigid.velocity = Vector2.down * speed;
+
+    }
+    private void OnEnable()
+    {
+        rigid.velocity = Vector2.down * speed;
+
     }
     public void moveTo(Vector3 direction)
     {
