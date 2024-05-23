@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyMob : Enemy
 {
-    Vector3 moveDirection = Vector3.down;
-
     private void Start()
     {
         speed = 6f;
@@ -15,10 +13,7 @@ public class EnemyMob : Enemy
     private void OnEnable()
     {
         rigid.velocity = Vector2.down * speed;
+        transform.rotation = Quaternion.identity;
 
-    }
-    public void moveTo(Vector3 direction)
-    {
-        moveDirection = direction;
     }
 }
