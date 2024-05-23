@@ -41,7 +41,7 @@ public class SpawnEnemyManager : MonoBehaviour
             yield return null;
             timer += Time.deltaTime;
 
-            if (!spawnBoss && timer >= 150f && timer % 150f < 1f)
+            if (!spawnBoss && timer >= 30f && timer % 30f < 1f)
             {
                 spawnBoss = true;
                 SpawnBoss();

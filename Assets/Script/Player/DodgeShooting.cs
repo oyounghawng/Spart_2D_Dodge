@@ -31,6 +31,6 @@ public class DodgeShooting : MonoBehaviour
         go.transform.position = projectileSpawnPosition.position;
         go.transform.SetParent(projectileSpawnPosition);
         go.GetComponent<Bullet>().SetSo(Stats.CurrentStat);
-       
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Shoot" ,0.4f);
     }
 }

@@ -8,16 +8,16 @@ public class GameScene : BaseScene
     public int BoomCnt
     {
         get { return boomcnt; }
-        set { boomcnt += value; 
-            //UI 처리까지 같이
+        set { boomcnt += value;
+            (Managers.UI.SceneUI as UI_GameScene).UIUpdate();
         }
     }
     private int score;
     public int Score
     {
         get { return score; }
-        set { score += value; 
-            //UI 처리까지 같이
+        set { score += value;
+            (Managers.UI.SceneUI as UI_GameScene).UIUpdate();
         }
     }
     protected override void Init()

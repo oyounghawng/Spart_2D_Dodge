@@ -17,7 +17,6 @@ public class LobbyScene : BaseScene
             yield return null;
 
         Managers.UI.ShowSceneUI<UI_LobbyScene>();
-
     }
     public override void Clear()
     {
