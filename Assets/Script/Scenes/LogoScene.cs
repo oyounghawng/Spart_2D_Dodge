@@ -18,7 +18,7 @@ public class LogoScene : BaseScene
             yield return null;
 
         Managers.UI.ShowSceneUI<UI_LogoScene>();
-        Managers.Sound.Play(Define.Sound.Bgm, "Bgm/BGM_03", 0.5f);
+        Managers.Sound.Play(Define.Sound.Bgm, "Bgm/BGM_03", 0.1f);
     }
     public override void Clear()
     {

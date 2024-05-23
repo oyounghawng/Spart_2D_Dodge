@@ -38,6 +38,7 @@ public class UI_Pause : UI_Popup
     }
     void returnLobby(PointerEventData evt)
     {
+        Time.timeScale = 1f;
         Managers.Scene.LoadScene(Define.SceneType.LobbyScene);
     }
 
